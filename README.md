@@ -1,4 +1,4 @@
-#Proposed flow
+# Proposed flow
 1. Open website (maajanbu-aachen.de/tracking)
 2. Start new game
   * Select players from pre-defined list (in ESWN order)
@@ -22,7 +22,7 @@
     * When done is pressed, change to screen 3
   * Abort (cancels whole game)
 
-#Questions
+# Questions
 * Password protect? Only parts?
 * How to group/sort yaku?
 * What data to display?
