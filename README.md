@@ -13,6 +13,7 @@
     * [Optional] box with number of oya's discards 
   * Win, when pressed new screen:
     * Select (first) winner
+    * Select open/close
     * All yaku, pressable
     * Box for fu value
     * Box for dora number
