@@ -9,7 +9,7 @@
   * Ryuukyoku (exhaustive)
     * After pressing, select all tenpai players and press Done -> changes to screen 3
   * Ryuukyoku (other)
-    * Choose between possible ryuukyokus (whatever we have in the rules) and "triggering" player, then press Done -> changes to screen 3
+    * Choose between possible ryuukyokus (unnecessary if only Kyuushuu Kyuuhai) and "triggering" player, then press Done -> changes to screen 3
     * [Optional] box with number of oya's discards 
   * Win, when pressed new screen:
     * Select (first) winner
@@ -22,8 +22,3 @@
     * If ron: optionally press "another" if there's been more than one ron, otherwise press done
     * When done is pressed, change to screen 3
   * Abort (cancels whole game)
-
-# Questions
-* Password protect? Only parts?
-* How to group/sort yaku?
-* What data to display?
