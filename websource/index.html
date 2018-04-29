@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Maajanbu Aachen Tracking</title>
+		<link rel="stylesheet" href="reset.css" />
+		<link rel="stylesheet" href="styles.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+		<script type="text/javascript" charset="utf-8" src="scripts.js"></script>
+	</head>
+	<body onload="startup()">
+		<!-- Initial state -->
+		<div id="stage0" class="stagediv">
+			<div id="playerspacer">
+				<select id="pleast" class="playerselect"><option value="East">東</option><option>Marcus</option></select>
+				<select id="plsouth" class="playerselect"><option value="South">南</option><option>Markus</option></select>
+				<select id="plwest" class="playerselect"><option value="West">西</option><option>Marckus</option></select>
+				<select id="plnorth" class="playerselect"><option value="North">北</option><option>Marus</option></select>
+			</div>
+			<div class="floatdiv">
+				<span id="tonpuustart" onclick="tonpuustart()" class="doubleclickbutton">Tonpuu</span>
+				<span id="hanchanstart" onclick="hanchanstart()" class="doubleclickbutton">Hanchan</span>
+			</div>
+		</div>
+
+		<!-- During play -->
+		<div id="stage1" class="stagediv">
+			<div id="timerdiv">
+				<span id="timer">0:00</span>
+				<span id="pausebutton" class="material-icons">pause_circle_outline</span>
+			</div>
+
+			<div id="rounddiv">
+				<span id="wind" class="roundtext">東</span>
+				<span id="kyokucount" class="roundtext">1</span>
+				<span id="kyoku" class="roundtext">局</span>
+				<span id="honbacount" class="roundtext">0</span>
+				<span id="honba" class="roundtext">本場</span>
+			</div>
+
+			<div class="floatdiv">
+				<div class="pointspacer">
+					<span id="p1wind" class="windspan">東</span> <span id="p1name" class="namespan">East</span> <span id="p1points" class="pointspan">25000</span>
+				</div>
+				<div class="pointspacer">
+					<span id="p2wind" class="windspan">南</span> <span id="p2name" class="namespan">South</span> <span id="p2points" class="pointspan">25000</span>
+				</div>
+				<div class="pointspacer">
+					<span id="p3wind" class="windspan">西</span> <span id="p3name" class="namespan">West</span> <span id="p3points" class="pointspan">25000</span>
+				</div>
+				<div class="pointspacer">
+					<span id="p4wind" class="windspan">北</span> <span id="p4name" class="namespan">North</span> <span id="p4points" class="pointspan">25000</span>
+				</div>
+				<div class="pointspacer">
+					<span id="riichispan">Riichi</span> <span id="riichipoints" class="pointspan">0</span>
+				</div>
+			</div>
+
+			<div id="buttonspacer">
+				<span id="btWin" onclick="winbutton()" class="selectbutton">Win</span>
+				<span id="btExh" onclick="exhaustbutton()" class="selectbutton">Exhaust</span>
+				<span id="btAbrt" onclick="abortbutton()" class="selectbutton">Kyuushu</span>
+				<span id="btChom" onclick="chombobutton()" class="selectbutton">Chombo</span>
+			</div>
+			<div class="floatdiv">
+				<span id="cancelbut" onclick="cancelbutton()" class="clickbutton">Cancel</span>
+			</div>
+		</div>
+
+		<!-- Selected Win -->
+		<div id="stage2" class="stagediv">
+			<div id="winnerspacer">
+				<select id="winner" class="playerselect small">
+					<option value="win">Win</option>
+					<option value="east">East</option>
+					<option value="south">South</option>
+					<option value="west">West</option>
+					<option value="north">North</option>
+				</select>
+				<select id="loser" class="playerselect small">
+					<option value="lose">Lose</option>
+					<option value="east">East</option>
+					<option value="south">South</option>
+					<option value="west">West</option>
+					<option value="north">North</option>
+				</select>
+			</div>
+			<div class="floatdiv">
+				<span id="openclose" class="togglebutton" onclick="opentoggle()">Open</span>
+				<span id="tsumoron" class="togglebutton" onclick="rontoggle()">Ron</span>
+			</div>
+			<div id="yakus">
+				<span id="tanyao" class="yaku" onclick="yakutoggle(this.id)">Tanyao</span>
+				<span id="chanta" class="yaku" onclick="yakutoggle(this.id)">Chanta</span>
+				<span id="honrou" class="yaku" onclick="yakutoggle(this.id)">Honrou</span>
+				<span id="junchan" class="yaku" onclick="yakutoggle(this.id)">Junchan</span>
+				<span id="haku" class="yaku" onclick="yakutoggle(this.id)">Haku</span>
+				<span id="hatsu" class="yaku" onclick="yakutoggle(this.id)">Hatsu</span>
+				<span id="chun" class="yaku" onclick="yakutoggle(this.id)">Chun</span>
+				<span id="jikaze" class="yaku" onclick="yakutoggle(this.id)">Jikaze</span>
+				<span id="bakaze" class="yaku" onclick="yakutoggle(this.id)">Bakaze</span>
+				<span id="shousangen" class="yaku" onclick="yakutoggle(this.id)">Shousangen</span>
+				<span id="pinfu" class="yaku" onclick="yakutoggle(this.id)">Pinfu</span>
+				<span id="iipeikou" class="yaku" onclick="yakutoggle(this.id)">Iipeikou</span>
+				<span id="sanshokudoujun" class="yaku" onclick="yakutoggle(this.id)">Sanshoku J</span>
+				<span id="ittsu" class="yaku" onclick="yakutoggle(this.id)">Ittsu</span>
+				<span id="ryanpeikou" class="yaku" onclick="yakutoggle(this.id)">Ryanpeikou</span>
+				<span id="toitoi" class="yaku" onclick="yakutoggle(this.id)">Toitoi</span>
+				<span id="sanankou" class="yaku" onclick="yakutoggle(this.id)">Sanankou</span>
+				<span id="sanshokudoukou" class="yaku" onclick="yakutoggle(this.id)">Sanshoku K</span>
+				<span id="chankan" class="yaku" onclick="yakutoggle(this.id)">Chankan</span>
+				<span id="rinshan" class="yaku" onclick="yakutoggle(this.id)">Rinshan</span>
+				<span id="sankantsu" class="yaku" onclick="yakutoggle(this.id)">Sankantsu</span>
+				<span id="honitsu" class="yaku" onclick="yakutoggle(this.id)">Honitsu</span>
+				<span id="chinitsu" class="yaku" onclick="yakutoggle(this.id)">Chintsu</span>
+				<span id="doubleriichi" class="yaku" onclick="yakutoggle(this.id)">Double Riichi</span>
+				<span id="renhou" class="yaku" onclick="yakutoggle(this.id)">Renhou</span>
+				<span id="haitei" class="yaku" onclick="yakutoggle(this.id)">Haitei</span>
+				<span id="houtei" class="yaku" onclick="yakutoggle(this.id)">Houtei</span>
+				<span id="chiitoi" class="yaku" onclick="yakutoggle(this.id)">Chiitoitsu</span>
+				<span id="riichi" class="yaku" onclick="yakutoggle(this.id)">Riichi</span>
+				<span id="openriichi" class="yaku" onclick="yakutoggle(this.id)">Open Riichi</span>
+				<span id="nagashi" class="yaku" onclick="yakutoggle(this.id)">Nagashi Mangan</span>
+				<span id="kokushi" class="yaku" onclick="yakutoggle(this.id)">Kokushimusou</span>
+				<span id="tsuuiisou" class="yaku" onclick="yakutoggle(this.id)">Tsuuiisou</span>
+				<span id="chinroutou" class="yaku" onclick="yakutoggle(this.id)">Chinroutou</span>
+				<span id="daisangen" class="yaku" onclick="yakutoggle(this.id)">Daisangen</span>
+				<span id="shousuushi" class="yaku" onclick="yakutoggle(this.id)">Shousuushi</span>
+				<span id="daisuushi" class="yaku" onclick="yakutoggle(this.id)">Daisuushi</span>
+				<span id="chuuren" class="yaku" onclick="yakutoggle(this.id)">Chuurenpoutou</span>
+				<span id="suuankou" class="yaku" onclick="yakutoggle(this.id)">Suuankou</span>
+				<span id="suukantsu" class="yaku" onclick="yakutoggle(this.id)">Suukantsu</span>
+				<span id="ryuuiisou" class="yaku" onclick="yakutoggle(this.id)">Ryuuiisou</span>
+				<span id="chiihou" class="yaku" onclick="yakutoggle(this.id)">Chiihou</span>
+				<span id="tenhou" class="yaku" onclick="yakutoggle(this.id)">Tenhou</span>
+			</div>
+			<div id="counterspacer">
+				<select id="fu" class="playerselect small">
+					<option value="20">20 Fu</option>
+					<option value="25">25 Fu</option>
+					<option value="30">30 Fu</option>
+					<option value="40">40 Fu</option>
+					<option value="50">50 Fu</option>
+					<option value="60">60 Fu</option>
+					<option value="70">70 Fu</option>
+					<option value="80">80 Fu</option>
+					<option value="90">90 Fu</option>
+					<option value="100">100 Fu</option>
+					<option value="110">110 Fu</option>
+				</select>
+				<select id="dora" class="playerselect small">
+					<option value="0">0 Dora</option>
+					<option value="1">1 Dora</option>
+					<option value="2">2 Dora</option>
+					<option value="3">3 Dora</option>
+					<option value="4">4 Dora</option>
+				</select>
+			</div>
+			<div class="floatdiv">
+				<span id="windonebut" onclick="windonebutton()" class="doubleclickbutton">Done</span>
+				<span id="winanotherbut" onclick="winanotherbutton()" class="doubleclickbutton">Another</span>
+			</div>
+			<div class="floatdiv">
+				<span id="wincancelbut" onclick="cancelbutton()" class="clickbutton">Cancel</span>
+			</div>
+		</div>
+
+		<!-- Selected Exhaust -->
+		<div id="stage3" class="stagediv">
+			<div class="floatdiv">
+				<span class="explaintext">Tenpai:</span>
+			</div>
+			<div class="floatdiv">
+				<span id="tpeast" class="tenpaitoggle" onclick="toggletenpai(this.id)">East</span>
+				<span id="tpsouth" class="tenpaitoggle" onclick="toggletenpai(this.id)">South</span>
+				<span id="tpwest" class="tenpaitoggle" onclick="toggletenpai(this.id)">West</span>
+				<span id="tpnorth" class="tenpaitoggle" onclick="toggletenpai(this.id)">North</span>
+			</div>
+			<div class="floatdiv">
+				<span class="explaintext">Riichi:</span>
+			</div>
+			<div class="floatdiv">
+				<span id="exrieast" class="tenpaitoggle" onclick="toggletenpai(this.id)">East</span>
+				<span id="exrisouth" class="tenpaitoggle" onclick="toggletenpai(this.id)">South</span>
+				<span id="exriwest" class="tenpaitoggle" onclick="toggletenpai(this.id)">West</span>
+				<span id="exrinorth" class="tenpaitoggle" onclick="toggletenpai(this.id)">North</span>
+			</div>
+
+			<div class="floatdiv">
+				<span id="exhaustdonebut" onclick="exhaustdonebutton()" class="doubleclickbutton">Done</span>
+				<span id="exhaustcancelbut" onclick="cancelbutton()" class="doubleclickbutton">Cancel</span>
+			</div>
+		</div>
+
+		<!-- Selected Abort -->
+		<div id="stage4" class="stagediv">
+			<select id="aborter" class="singleselect">
+				<option value="aborter">Aborter</option>
+				<option value="east">East</option>
+				<option value="south">South</option>
+				<option value="west">West</option>
+				<option value="north">North</option>
+			</select>
+			<div class="floatdiv">
+				<span class="explaintext">Riichi:</span>
+			</div>
+			<div class="floatdiv">
+				<span id="abrieast" class="tenpaitoggle" onclick="toggletenpai(this.id)">East</span>
+				<span id="abrisouth" class="tenpaitoggle" onclick="toggletenpai(this.id)">South</span>
+				<span id="abriwest" class="tenpaitoggle" onclick="toggletenpai(this.id)">West</span>
+				<span id="abrinorth" class="tenpaitoggle" onclick="toggletenpai(this.id)">North</span>
+			</div>
+			<div class="floatdiv">
+				<span id="abortdonebut" onclick="abortdonebutton()" class="doubleclickbutton">Done</span>
+				<span id="abortcancelbut" onclick="cancelbutton()" class="doubleclickbutton">Cancel</span>
+			</div>
+		</div>
+
+		<!-- Selected Chombo -->
+		<div id="stage5" class="stagediv">
+			<select id="chomboer" class="playerselect">
+				<option value="chomboer">Chomboer</option>
+				<option value="east">East</option>
+				<option value="south">South</option>
+				<option value="west">West</option>
+				<option value="north">North</option>
+			</select>
+			<select id="chomboreason" class="playerselect">
+				<option value="noten">Noten</option>
+				<option value="furiten">Furiten</option>
+				<option value="invalid">Invalid</option>
+			</select>
+			<span id="chombodonebut" onclick="chombodonebutton()" class="doubleclickbutton">Done</span>
+			<span id="chombocancelbut" onclick="cancelbutton()" class="doubleclickbutton">Cancel</span>
+		</div>
+
+		<!-- Game done -->
+		<div id="stage6" class="stagediv">
+		</div>
+	</body>
+</html>

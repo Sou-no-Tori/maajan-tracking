@@ -1,0 +1,209 @@
+
+.stagediv {
+	margin-top: 1vh;
+}
+
+.hidediv {
+	display: none;
+}
+
+#playerspaces {
+}
+
+.playerselect, .selectbutton {
+	float: left;
+	margin-left: 2vw;
+	margin-top: 2vw;
+	width: 47vw;
+	height: 24vw;
+	background-color: green;
+	text-align: center;
+	text-align-last: center;
+	font-size: 10vw;
+	border-radius: 2vw;
+}
+
+.selectbutton {
+	font-size: 10vw;
+	line-height: 24vw;
+}
+
+.singleselect {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60vw;
+	height: 24vw;
+	background-color: green;
+	text-align-last: center;
+	font-size: 10vw;
+	border-radius: 2vw;
+}
+
+.floatdiv {
+	display: block;
+	float: left;
+	width: 100vw;
+}
+
+.clickbutton, .doubleclickbutton {
+	display: block;
+
+	margin-top: 4vw;
+	margin-left: auto;
+	margin-right: auto;
+	width:47vw;
+	height:12vw;
+	background-color: green;
+	text-align: center;
+	font-size: 10vw;
+	border-radius: 2vw;
+}
+
+.doubleclickbutton {
+	float: left;
+	margin-left: 2vw;
+}
+
+#timerdiv {
+	text-align: center;
+	width: 100vw;
+	float: left;
+}
+
+#timer {
+	display: block;
+	float: left;
+	width: 50vw;
+	height: 10vh;
+	font-size: 10vh;
+	margin-left: 15vw;
+}
+
+#pausebutton {
+	display: block;
+	float: left;
+	height: 10vh;
+	font-size: 10vh;
+	width: 20vw;
+}
+
+#rounddiv {
+	width: 100vw;
+	float: left;
+	text-align: center;
+}
+
+.roundtext {
+	font-size: 6vh;
+	height: 6vh;
+}
+
+#buttonspacer {
+	float: left;
+}
+
+#winnerspacer {
+	width: 100vw;
+	float: left;
+}
+
+#yakus, #counterspacer, #winbutspacer {
+	width: 100vw;
+	float: left;
+}
+
+#yakus {
+	margin-top: 2vh;
+	margin-bottom: 2vh;
+}
+
+.yaku {
+	display: block;
+	float: left;
+	width: 30vw;
+	margin-left: 2vw;
+	height: 2vh;
+	font-size: 1.8vh;
+	line-height: 2vh;
+	background-color: grey;
+	border-radius: 2vw;
+	text-align: center;
+	margin-top: 1vh;
+}
+
+.yaku.selected {
+	background-color: green;
+}
+
+.playerselect.small {
+	margin-left: 2vw;
+	margin-top: 2vw;
+	width: 47vw;
+	height: 15vw;
+	font-size: 12vw;
+	border-radius: 2vw;
+}
+
+.togglebutton, .tenpaitoggle {
+	margin-left: 2vw;
+	margin-top: 2vw;
+	width: 47vw;
+	height: 15vw;
+	font-size: 12vw;
+	border-radius: 2vw;
+	background-color: green;
+	text-align-last: center;
+	float: left;
+}
+
+.tenpaitoggle {
+	background-color: red;
+}
+
+.tenpaitoggle.selected {
+	background-color: green;
+}
+
+.explaintext {
+	display: block;
+	margin: auto;
+	text-align: center;
+	font-size: 10vw;
+}
+
+.windspan, .namespan, .pointspan {
+	font-size: 8vw;
+	display: block;
+	float: left;
+}
+
+.windspan {
+	margin-left: 2vw;
+	width: 10vw;
+}
+
+.namespan {
+	margin-left: 2vw;
+	width: 55vw;
+}
+
+.pointspan {
+	margin-left: 2vw;
+	width: 25vw;
+	text-align: right;
+}
+
+#riichispan {
+	width: 55vw;
+	font-size: 8vw;
+	margin-left: 14vw;
+	display: block;
+	float: left;
+}
+
+.pointspacer {
+	display: block;
+	width: 100vw;
+	float: left;
+}

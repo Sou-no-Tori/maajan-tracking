@@ -26,6 +26,9 @@
     * dora number
     * fu
 
+#UI stuff:
+* Somehow handle sekinin barai
+
 # Stats:
 * Show all games, expandable to corresponding hands
 * Per player:
