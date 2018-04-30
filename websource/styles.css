@@ -74,9 +74,9 @@
 #timer {
 	display: block;
 	float: left;
-	width: 50vw;
+	width: 55vw;
 	height: 10vh;
-	font-size: 10vh;
+	font-size: 8vh;
 	margin-left: 15vw;
 }
 
@@ -84,8 +84,8 @@
 	display: block;
 	float: left;
 	height: 10vh;
-	font-size: 10vh;
-	width: 20vw;
+	font-size: 8vh;
+	width: 15vw;
 }
 
 #rounddiv {
@@ -150,10 +150,11 @@
 	margin-top: 2vw;
 	width: 47vw;
 	height: 15vw;
-	font-size: 12vw;
+	font-size: 10vw;
 	border-radius: 2vw;
 	background-color: green;
 	text-align-last: center;
+	line-height:15vw;
 	float: left;
 }
 
@@ -203,7 +204,6 @@
 }
 
 .pointspacer {
-	display: block;
 	width: 100vw;
 	float: left;
 }

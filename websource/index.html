@@ -13,10 +13,34 @@
 		<!-- Initial state -->
 		<div id="stage0" class="stagediv">
 			<div id="playerspacer">
-				<select id="pleast" class="playerselect"><option value="East">東</option><option>Marcus</option></select>
-				<select id="plsouth" class="playerselect"><option value="South">南</option><option>Markus</option></select>
-				<select id="plwest" class="playerselect"><option value="West">西</option><option>Marckus</option></select>
-				<select id="plnorth" class="playerselect"><option value="North">北</option><option>Marus</option></select>
+				<select id="pleast" class="playerselect"><option value="East">東</option>
+					<option>Marco</option>
+					<option>Marcus</option>
+					<option>Markus</option>
+					<option>Philipp</option>
+					<option>Pia</option>
+				</select>
+				<select id="plsouth" class="playerselect"><option value="South">南</option>
+					<option>Marco</option>
+					<option>Marcus</option>
+					<option>Markus</option>
+					<option>Philipp</option>
+					<option>Pia</option>
+				</select>
+				<select id="plwest" class="playerselect"><option value="West">西</option>
+					<option>Marco</option>
+					<option>Marcus</option>
+					<option>Markus</option>
+					<option>Philipp</option>
+					<option>Pia</option>
+				</select>
+				<select id="plnorth" class="playerselect"><option value="North">北</option>
+					<option>Marco</option>
+					<option>Marcus</option>
+					<option>Markus</option>
+					<option>Philipp</option>
+					<option>Pia</option>
+				</select>
 			</div>
 			<div class="floatdiv">
 				<span id="tonpuustart" onclick="tonpuustart()" class="doubleclickbutton">Tonpuu</span>
@@ -27,8 +51,8 @@
 		<!-- During play -->
 		<div id="stage1" class="stagediv">
 			<div id="timerdiv">
-				<span id="timer">0:00</span>
-				<span id="pausebutton" class="material-icons">pause_circle_outline</span>
+				<span id="timer">0:00:00</span>
+				<span id="pausebutton" class="material-icons" onclick="pausebutton()">pause_circle_outline</span>
 			</div>
 
 			<div id="rounddiv">
@@ -49,7 +73,7 @@
 				<div class="pointspacer">
 					<span id="p3wind" class="windspan">西</span> <span id="p3name" class="namespan">West</span> <span id="p3points" class="pointspan">25000</span>
 				</div>
-				<div class="pointspacer">
+				<div class="pointspacer" id="northdisplay">
 					<span id="p4wind" class="windspan">北</span> <span id="p4name" class="namespan">North</span> <span id="p4points" class="pointspan">25000</span>
 				</div>
 				<div class="pointspacer">
@@ -155,6 +179,15 @@
 					<option value="3">3 Dora</option>
 					<option value="4">4 Dora</option>
 				</select>
+			</div>
+			<div class="floatdiv">
+				<span class="explaintext">Riichi:</span>
+			</div>
+			<div class="floatdiv">
+				<span id="winrieast" class="tenpaitoggle" onclick="toggletenpai(this.id)">East</span>
+				<span id="winrisouth" class="tenpaitoggle" onclick="toggletenpai(this.id)">South</span>
+				<span id="winriwest" class="tenpaitoggle" onclick="toggletenpai(this.id)">West</span>
+				<span id="winrinorth" class="tenpaitoggle" onclick="toggletenpai(this.id)">North</span>
 			</div>
 			<div class="floatdiv">
 				<span id="windonebut" onclick="windonebutton()" class="doubleclickbutton">Done</span>
