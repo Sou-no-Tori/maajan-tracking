@@ -113,6 +113,12 @@
 	float: left;
 }
 
+#yakuman {
+	width: 100vw;
+	float: left;
+	display: none;
+}
+
 #yakus {
 	margin-top: 2vh;
 	margin-bottom: 2vh;
@@ -123,13 +129,14 @@
 	float: left;
 	width: 30vw;
 	margin-left: 2vw;
-	height: 2vh;
+	height: 3vh;
 	font-size: 1.8vh;
 	line-height: 2vh;
 	background-color: grey;
 	border-radius: 2vw;
 	text-align: center;
 	margin-top: 1vh;
+	line-height: 3vh;
 }
 
 .yaku.selected {
@@ -173,7 +180,7 @@
 	font-size: 10vw;
 }
 
-.windspan, .namespan, .pointspan {
+.windspan, .namespan, .pointspan, .changespan {
 	font-size: 8vw;
 	display: block;
 	float: left;
@@ -186,7 +193,7 @@
 
 .namespan {
 	margin-left: 2vw;
-	width: 55vw;
+	width: 33vw;
 }
 
 .pointspan {
@@ -195,8 +202,14 @@
 	text-align: right;
 }
 
+.changespan {
+	margin-left: 2vw;
+	width:20vw;
+	text-align: right;
+}
+
 #riichispan {
-	width: 55vw;
+	width: 33vw;
 	font-size: 8vw;
 	margin-left: 14vw;
 	display: block;

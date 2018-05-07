@@ -1,6 +1,7 @@
 var stage=0; 
 var players={"East":"None","South":"None","West":"None","North":"None"};
 var points={"East":25000,"South":25000,"West":25000,"North":25000};
+var change={"East":0,"South":0,"West":0,"North":0,"Riichi":0};
 var chombos={"East":0,"South":0,"West":0,"North":0};
 
 var sanma=false;
@@ -124,6 +125,12 @@ function update_display()
 	document.getElementById("p4points").innerHTML = points["North"];
 	document.getElementById("riichipoints").innerHTML = Number(riichis)*1000;
 
+	document.getElementById("p1change").innerHTML = change["East"];
+	document.getElementById("p2change").innerHTML = change["South"];
+	document.getElementById("p3change").innerHTML = change["West"];
+	document.getElementById("p4change").innerHTML = change["North"];
+	document.getElementById("riichichange").innerHTML = change["Riichi"];
+
 	if(sanma)
 		document.getElementById("northdisplay").classList.add("hidediv");
 	else
@@ -198,6 +205,7 @@ function change_stage(s)
 	{
 		players={"East":"None","South":"None","West":"None","North":"None"};
 		points={"East":25000,"South":25000,"West":25000,"North":25000};
+		change={"East":0,"South":0,"West":0,"North":0};
 
 		sanma=false;
 
@@ -221,7 +229,7 @@ function tonpuustart()
 	commonstart();
 }
 
-function tonpuustart()
+function hanchanstart()
 {
 	tonpuu=false;
 	commonstart();
@@ -272,6 +280,10 @@ function commonstart()
 	document.getElementById("exrisouth").innerHTML = players["South"];
 	document.getElementById("exriwest").innerHTML = players["West"];
 	document.getElementById("exrinorth").innerHTML = players["North"];
+	document.getElementById("tpeast").innerHTML = players["East"];
+	document.getElementById("tpsouth").innerHTML = players["South"];
+	document.getElementById("tpwest").innerHTML = players["West"];
+	document.getElementById("tpnorth").innerHTML = players["North"];
 
 	if(sanma)
 	{
@@ -282,6 +294,7 @@ function commonstart()
 	}
 
 	time=0;
+	window.clearInterval(interval);
 	interval = window.setInterval(update_time,1000);
 
 	update_display();
@@ -305,16 +318,33 @@ function pausebutton()
 
 function winbutton()
 {
+	change["East"] = 0;
+	change["South"] = 0;
+	change["West"] = 0;
+	change["North"] = 0;
+	change["Riichi"] = 0;
 	change_stage(2);
 }
 
 function exhaustbutton()
-{
+{	
+	change["East"] = 0;
+	change["South"] = 0;
+	change["West"] = 0;
+	change["North"] = 0;
+	change["Riichi"] = 0;
+
 	change_stage(3);
 }
 
 function abortbutton()
 {
+	change["East"] = 0;
+	change["South"] = 0;
+	change["West"] = 0;
+	change["North"] = 0;
+	change["Riichi"] = 0;
+
 	change_stage(4);
 }
 
@@ -435,9 +465,11 @@ function commonwin()
 				tpay = roundpay(payment*2);
 			tpay += 100*honba;
 			points[playwinds[i]] -= tpay;
+			change[playwinds[i]] -= tpay;
 			totalpay += tpay;
 		}
 		points[playwinds[winner-1]] += totalpay;
+		change[playwinds[winner-1]] += totalpay;
 	}
 	else //ron
 	{
@@ -449,7 +481,9 @@ function commonwin()
 		payment = roundpay(payment);
 		payment += 300*honba;
 		points[playwinds[winner-1]] += payment;
+		change[playwinds[winner-1]] += payment;
 		points[playwinds[loser-1]] -= payment;
+		change[playwinds[loser-1]] -= payment;
 	}
 
 	//riichis this round
@@ -457,21 +491,29 @@ function commonwin()
 	{
 		++riichis;
 		points["East"] -= 1000;
+		change["East"] -= 1000;
+		change["Riichi"] += 1000;
 	}
 	if(document.getElementById("winrisouth").classList.contains("selected") && winwind != "南")
 	{
 		++riichis;
 		points["South"] -= 1000;
+		change["South"] -= 1000;
+		change["Riichi"] += 1000;
 	}
 	if(document.getElementById("winriwest").classList.contains("selected") && winwind != "西")
 	{
 		++riichis;
 		points["West"] -= 1000;
+		change["West"] -= 1000;
+		change["Riichi"] += 1000;
 	}
 	if(document.getElementById("winrinorth").classList.contains("selected") && winwind != "北" && !sanma)
 	{
 		++riichis;
 		points["North"] -= 1000;
+		change["North"] -= 1000;
+		change["Riichi"] += 1000;
 	}
 
 	//handle riichi sticks
@@ -504,6 +546,8 @@ function windonebutton()
 	if(tempriichis > 0)
 	{
 		points[playwinds[atamahane-1]] += tempriichis*1000;
+		change[playwinds[atamahane-1]] += tempriichis*1000;
+		change["Riichi"] -= tempriichis*1000;
 	}
 
 
@@ -517,6 +561,7 @@ function windonebutton()
 		honba++;
 	else
 	{
+		honba = 0;
 		kyoku_increase();
 	}
 
@@ -567,9 +612,9 @@ function exhaustdonebutton()
 			pay = 2000;
 
 		var get = (pay*(3-tenpaicount))/(tenpaicount);
-		if(tpeast) { points["East"] += get; } else { points["East"] -= pay; }
-		if(tpsouth) { points["South"] += get; } else { points["South"] -= pay; }
-		if(tpwest) { points["West"] += get; } else { points["West"] -= pay; }
+		if(tpeast) { points["East"] += get; change["East"] += get;} else { points["East"] -= pay; change["East"] -= pay;}
+		if(tpsouth) { points["South"] += get; change["South"] += get; } else { points["South"] -= pay; change["South"] -= pay;}
+		if(tpwest) { points["West"] += get; change["West"] += get;} else { points["West"] -= pay; change["West"] -= pay;}
 
 	}
 	else
@@ -584,32 +629,40 @@ function exhaustdonebutton()
 			pay = 3000;
 
 		var get = (pay*(4-tenpaicount))/(tenpaicount);
-		if(tpeast) { points["East"] += get; } else { points["East"] -= pay; }
-		if(tpsouth) { points["South"] += get; } else { points["South"] -= pay; }
-		if(tpwest) { points["West"] += get; } else { points["West"] -= pay; }
-		if(tpnorth) { points["North"] += get; } else { points["North"] -= pay; }
+		if(tpeast) { points["East"] += get; change["East"] += get;} else { points["East"] -= pay; change["East"] -= pay;}
+		if(tpsouth) { points["South"] += get; change["South"] += get; } else { points["South"] -= pay; change["South"] -= pay;}
+		if(tpwest) { points["West"] += get; change["West"] += get;} else { points["West"] -= pay; change["West"] -= pay;}
+		if(tpwest) { points["North"] += get; change["North"] += get;} else { points["North"] -= pay; change["North"] -= pay;}
 	}
 
 	//riichis this round
 	if(document.getElementById("exrieast").classList.contains("selected"))
 	{
 		++riichis;
+		change["Riichi"] += 1000;
 		points["East"] -= 1000;
+		change["East"] -= 1000;
 	}
 	if(document.getElementById("exrisouth").classList.contains("selected"))
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["South"] -= 1000;
+		change["South"] -= 1000;
 	}
 	if(document.getElementById("exriwest").classList.contains("selected"))
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["West"] -= 1000;
+		change["West"] -= 1000;
 	}
 	if(document.getElementById("exrinorth").classList.contains("selected") && !sanma)
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["North"] -= 1000;
+		change["North"] -= 1000;
 	}
 
 	if(check_over())
@@ -638,22 +691,30 @@ function abortdonebutton()
 	if(document.getElementById("abrieast").classList.contains("selected"))
 	{
 		++riichis;
+		change["Riichi"] += 1000;
 		points["East"] -= 1000;
+		change["East"] -= 1000;
 	}
 	if(document.getElementById("abrisouth").classList.contains("selected"))
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["South"] -= 1000;
+		change["South"] -= 1000;
 	}
 	if(document.getElementById("abriwest").classList.contains("selected"))
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["West"] -= 1000;
+		change["West"] -= 1000;
 	}
 	if(document.getElementById("abrinorth").classList.contains("selected"))
 	{
 		++riichis;
-		points["East"] -= 1000;
+		change["Riichi"] += 1000;
+		points["North"] -= 1000;
+		change["North"] -= 1000;
 	}
 	update_display();
 	change_stage(1);

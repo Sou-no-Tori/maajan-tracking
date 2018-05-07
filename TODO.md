@@ -1,33 +1,11 @@
-# DatabaseScheme:
-* Players
-  * ID
-  * Name
-* Games
-  * ID
-  * Player East/South/West/North (North optional)
-  * Final Scores
-  * Chombos
-  * Total time
-* Hands
-  * ID
-  * Game ID
-  * Hand# 
-  * Round (ESWN)
-  * Honba
-  * Time
-  * Number of discards
-  * draw?
-  * chombo? type of chombo?
-  * Winner(s)
-  * Loser(s)
-  * tsumo/ron
-  * for each winner:
-    * yakulist
-    * dora number
-    * fu
-
 #UI stuff:
 * Somehow handle sekinin barai
+* Option to add a guest player
+* undo function
+* browse existing games
+* session load
+* reorder yaku (group)
+* show point change before committing
 
 # Stats:
 * Show all games, expandable to corresponding hands
